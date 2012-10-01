@@ -17,9 +17,9 @@ Requirements
 Current Weather Conditions
 ==========================
 
-To find your current weather conditions a Station ID is required.
-You can search for a local station ID here: http://www.weather.gov/xml/current_obs/.
-There is also an XML list of stations in case you'd like to do something with station data: http://www.weather.gov/xml/current_obs/index.xml.
+To find your current weather conditions you'll first need to know a local NOAA Weather Observation Station ID.
+You can search for your local station ID here: http://www.weather.gov/xml/current_obs/.
+There is also a list of stations in XML if you'd like to do something with the station data: http://www.weather.gov/xml/current_obs/index.xml.
 Here is some sample code for getting the current weather conditions:
 
     require_once 'noaa/Forecaster.php';
@@ -83,7 +83,7 @@ Just create a class that implements the \noaa\weather\cache\Cache interface.
 Use the setCache() Configuration method to set your own custom caching class.
 See the noaa/weather/cache/ArrayCache.php file for an example.
 
-To instantiate a Forecaster object without any caching mechanism (not recommended!):
+To instantiate a Forecaster object without a caching mechanism (not recommended!):
 
     require_once 'noaa/Forecaster.php';
     $forecaster = new \noaa\Forecaster();
