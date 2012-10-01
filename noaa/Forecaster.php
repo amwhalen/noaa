@@ -94,26 +94,7 @@ class Forecaster extends Base {
 			'startDate' => $startDate,
 			'numDays'   => $days,
 			'format'    => '24 hourly',
-			'Unit'      => 'e',
-			// forecast elements: http://graphical.weather.gov/xml/docs/elementInputNames.php
-			/*
-			'temp'  => 'temp',
-			'maxt'  => 'maxt',
-			'mint'  => 'mint',
-			'temp'  => 'temp',
-			'snow'  => 'snow',
-			'dew'   => 'dew',
-			'wspd'  => 'wspd',
-			'wdir'  => 'wdir',
-			'sky'   => 'sky',
-			'wx'    => 'wx',
-			'icons' => 'icons',
-			'rh'    => 'rh',
-			'appt'  => 'appt',
-			'pop12' => 'pop12',
-			'qpf'   => 'qpf',
-			'wwa'   => 'wwa',
-			*/
+			'Unit'      => 'e'
 		);
 
 		// build the request URL query string
