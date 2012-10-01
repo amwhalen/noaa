@@ -66,7 +66,7 @@ Here is some sample code for getting the 7-day forecast starting from the curren
     $day = $forecast[0];
     echo "High Temperature: " . $day->getHighTemperature() . "\n";
 
-Depending on your local timezone and when you make the request, the first day included in the response may be "today" or "tomorrow".
+Depending on the time of day you make the request (local to the location you request), the first day included in the response may be "today" or "tomorrow".
 You can find more sample code in the example/forecast.php file.
 
 
