@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<dwml version="1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.nws.noaa.gov/forecasts/xml/DWMLgen/schema/DWML.xsd">
+  <head>
+    <product srsName="WGS 1984" concise-name="dwmlByDay" operational-mode="official">
+      <title>NOAA's National Weather Service Forecast by 24 Hour Period</title>
+      <field>meteorological</field>
+      <category>forecast</category>
+      <creation-date refresh-frequency="PT1H">2008-12-05T19:38:31Z</creation-date>
+    </product>
+    <source>
+      <more-information>http://www.nws.noaa.gov/forecasts/xml/</more-information>
+      <production-center>Meteorological Development Laboratory<sub-center>Product Generation Branch</sub-center></production-center>
+      <disclaimer>http://www.nws.noaa.gov/disclaimer.html</disclaimer>
+      <credit>http://www.weather.gov/</credit>
+      <credit-logo>http://www.weather.gov/images/xml_logo.gif</credit-logo>
+      <feedback>http://www.weather.gov/feedback.php</feedback>
+    </source>
+  </head>
+  <data>
+    <location>
+      <location-key>point1</location-key>
+      <point latitude="48.22" longitude="-106.62"/>
+    </location>
+    <moreWeatherInformation applicable-location="point1">http://forecast.weather.gov/MapClick.php?textField1=48.22&amp;textField2=-106.62</moreWeatherInformation>
+    <time-layout time-coordinate="local" summarization="24hourly">
+      <layout-key>k-p24h-n7-1</layout-key>
+      <start-valid-time>2008-12-05T06:00:00-07:00</start-valid-time>
+      <end-valid-time>2008-12-06T06:00:00-07:00</end-valid-time>
+      <start-valid-time>2008-12-06T06:00:00-07:00</start-valid-time>
+      <end-valid-time>2008-12-07T06:00:00-07:00</end-valid-time>
+      <start-valid-time>2008-12-07T06:00:00-07:00</start-valid-time>
+      <end-valid-time>2008-12-08T06:00:00-07:00</end-valid-time>
+      <start-valid-time>2008-12-08T06:00:00-07:00</start-valid-time>
+      <end-valid-time>2008-12-09T06:00:00-07:00</end-valid-time>
+      <start-valid-time>2008-12-09T06:00:00-07:00</start-valid-time>
+      <end-valid-time>2008-12-10T06:00:00-07:00</end-valid-time>
+      <start-valid-time>2008-12-10T06:00:00-07:00</start-valid-time>
+      <end-valid-time>2008-12-11T06:00:00-07:00</end-valid-time>
+      <start-valid-time>2008-12-11T06:00:00-07:00</start-valid-time>
+      <end-valid-time>2008-12-12T06:00:00-07:00</end-valid-time>
+    </time-layout>
+    <time-layout time-coordinate="local" summarization="12hourly">
+      <layout-key>k-p12h-n14-2</layout-key>
+      <start-valid-time>2008-12-05T06:00:00-07:00</start-valid-time>
+      <end-valid-time>2008-12-05T18:00:00-07:00</end-valid-time>
+      <start-valid-time>2008-12-05T18:00:00-07:00</start-valid-time>
+      <end-valid-time>2008-12-06T06:00:00-07:00</end-valid-time>
+      <start-valid-time>2008-12-06T06:00:00-07:00</start-valid-time>
+      <end-valid-time>2008-12-06T18:00:00-07:00</end-valid-time>
+      <start-valid-time>2008-12-06T18:00:00-07:00</start-valid-time>
+      <end-valid-time>2008-12-07T06:00:00-07:00</end-valid-time>
+      <start-valid-time>2008-12-07T06:00:00-07:00</start-valid-time>
+      <end-valid-time>2008-12-07T18:00:00-07:00</end-valid-time>
+      <start-valid-time>2008-12-07T18:00:00-07:00</start-valid-time>
+      <end-valid-time>2008-12-08T06:00:00-07:00</end-valid-time>
+      <start-valid-time>2008-12-08T06:00:00-07:00</start-valid-time>
+      <end-valid-time>2008-12-08T18:00:00-07:00</end-valid-time>
+      <start-valid-time>2008-12-08T18:00:00-07:00</start-valid-time>
+      <end-valid-time>2008-12-09T06:00:00-07:00</end-valid-time>
+      <start-valid-time>2008-12-09T06:00:00-07:00</start-valid-time>
+      <end-valid-time>2008-12-09T18:00:00-07:00</end-valid-time>
+      <start-valid-time>2008-12-09T18:00:00-07:00</start-valid-time>
+      <end-valid-time>2008-12-10T06:00:00-07:00</end-valid-time>
+      <start-valid-time>2008-12-10T06:00:00-07:00</start-valid-time>
+      <end-valid-time>2008-12-10T18:00:00-07:00</end-valid-time>
+      <start-valid-time>2008-12-10T18:00:00-07:00</start-valid-time>
+      <end-valid-time>2008-12-11T06:00:00-07:00</end-valid-time>
+      <start-valid-time>2008-12-11T06:00:00-07:00</start-valid-time>
+      <end-valid-time>2008-12-11T18:00:00-07:00</end-valid-time>
+      <start-valid-time>2008-12-11T18:00:00-07:00</start-valid-time>
+      <end-valid-time>2008-12-12T06:00:00-07:00</end-valid-time>
+    </time-layout>
+    <time-layout time-coordinate="local" summarization="24hourly">
+      <layout-key>k-p6h-n1-3</layout-key>
+      <start-valid-time>2008-12-05T12:00:00-07:00</start-valid-time>
+      <end-valid-time>2008-12-05T18:00:00-07:00</end-valid-time>
+    </time-layout>
+    <parameters applicable-location="point1">
+      <temperature type="maximum" units="Fahrenheit" time-layout="k-p24h-n7-1">
+        <name>Daily Maximum Temperature</name>
+        <value>38</value>
+        <value>29</value>
+        <value>33</value>
+        <value>20</value>
+        <value>37</value>
+        <value>18</value>
+        <value>14</value>
+      </temperature>
+      <temperature type="minimum" units="Fahrenheit" time-layout="k-p24h-n7-1">
+        <name>Daily Minimum Temperature</name>
+        <value>17</value>
+        <value>19</value>
+        <value>20</value>
+        <value>14</value>
+        <value>14</value>
+        <value>2</value>
+        <value xsi:nil="true"/>
+      </temperature>
+      <probability-of-precipitation type="12 hour" units="percent" time-layout="k-p12h-n14-2">
+        <name>12 Hourly Probability of Precipitation</name>
+        <value>27</value>
+        <value>19</value>
+        <value>56</value>
+        <value>33</value>
+        <value>30</value>
+        <value>27</value>
+        <value>20</value>
+        <value>7</value>
+        <value>10</value>
+        <value>16</value>
+        <value>26</value>
+        <value>12</value>
+        <value>11</value>
+        <value xsi:nil="true"/>
+      </probability-of-precipitation>
+      <weather time-layout="k-p24h-n7-1">
+        <name>Weather Type, Coverage, and Intensity</name>
+        <weather-conditions weather-summary="Snow Likely">
+          <value coverage="likely" intensity="light" weather-type="snow" qualifier="none"/>
+        </weather-conditions>
+        <weather-conditions weather-summary="Snow Likely">
+          <value coverage="likely" intensity="light" weather-type="snow" qualifier="none"/>
+        </weather-conditions>
+        <weather-conditions weather-summary="Chance Snow">
+          <value coverage="chance" intensity="light" weather-type="snow" qualifier="none"/>
+        </weather-conditions>
+        <weather-conditions weather-summary="Slight Chance Snow">
+          <value coverage="slight chance" intensity="light" weather-type="snow" qualifier="none"/>
+        </weather-conditions>
+        <weather-conditions weather-summary="Mostly Cloudy"/>
+        <weather-conditions weather-summary="Chance Snow">
+          <value coverage="chance" intensity="light" weather-type="snow" qualifier="none"/>
+        </weather-conditions>
+        <weather-conditions weather-summary="Mostly Cloudy"/>
+      </weather>
+      <conditions-icon type="forecast-NWS" time-layout="k-p24h-n7-1">
+        <name>Conditions Icons</name>
+        <icon-link>http://www.nws.noaa.gov/weather/images/fcicons/sn30.jpg</icon-link>
+        <icon-link>http://www.nws.noaa.gov/weather/images/fcicons/sn60.jpg</icon-link>
+        <icon-link>http://www.nws.noaa.gov/weather/images/fcicons/sn30.jpg</icon-link>
+        <icon-link>http://www.nws.noaa.gov/weather/images/fcicons/sn20.jpg</icon-link>
+        <icon-link>http://www.nws.noaa.gov/weather/images/fcicons/bkn.jpg</icon-link>
+        <icon-link>http://www.nws.noaa.gov/weather/images/fcicons/sn30.jpg</icon-link>
+        <icon-link>http://www.nws.noaa.gov/weather/images/fcicons/bkn.jpg</icon-link>
+      </conditions-icon>
+      <hazards time-layout="k-p6h-n1-3">
+        <name>Watches, Warnings, and Advisories</name>
+        <hazard-conditions>
+          <hazard hazardCode="LW.Y" phenomena="Lake Wind" significance="Advisory" hazardType="long duration">
+            <hazardTextURL>http://forecast.weather.gov/wwamap/wwatxtget.php?cwa=usa&amp;wwa=Lake%20Wind%20Advisory</hazardTextURL>
+          </hazard>
+        </hazard-conditions>
+      </hazards>
+    </parameters>
+  </data>
+</dwml>
