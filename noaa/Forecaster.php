@@ -18,6 +18,7 @@ require_once 'weather/response/Conditions.php';
 require_once 'weather/cache/Cache.php';
 require_once 'weather/cache/ArrayCache.php';
 require_once 'weather/cache/FileCache.php';
+require_once 'weather/cache/NoCache.php';
 
 class Forecaster extends Base {
 
@@ -76,7 +77,7 @@ class Forecaster extends Base {
 	 *
 	 * @param string $lat The latitude
 	 * @param string $lng The longitude
-	 * @param string $startDate The date and time to start the forecast data at, in your local timezone.
+	 * @param string $startDate The day (local to the location) to start the forecast data at. Preferably YYYY-mm-dd format, no time included.
 	 * @param int $days The number of days to retrieve the forecast for.
 	 */
 	public function getForecastByLatLng($lat, $lng, $startDate=null, $days=7) {

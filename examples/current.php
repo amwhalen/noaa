@@ -19,7 +19,12 @@ $forecaster = new \noaa\Forecaster($config);
 
 // fetch a CurrentWeather instance for a specific station ID
 // find station IDs here: http://www.weather.gov/xml/current_obs/
-$current = $forecaster->getCurrentWeather($stationId);
+try {
+	$current = $forecaster->getCurrentWeather($stationId);
+} catch (\Exception $e) {
+	echo "Error: " . $e->getMessage() . "\n";
+	exit(1);
+}
 
 // display
 echo $current->getLocation() . "\n";

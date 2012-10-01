@@ -4,7 +4,7 @@ namespace noaa\weather;
 
 use noaa\weather\Base,
 	noaa\weather\cache\Cache,
-	noaa\weather\cache\ArrayCache;
+	noaa\weather\cache\NoCache;
 
 class Configuration extends Base {
 
@@ -15,7 +15,7 @@ class Configuration extends Base {
 	public function __construct() {
 
 		// defaults
-		$this->setCache(new ArrayCache());
+		$this->setCache(new NoCache());
 		$this->setTemperatureScale('F');
 		$this->setDistanceUnit('miles');
 

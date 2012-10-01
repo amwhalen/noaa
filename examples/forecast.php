@@ -10,13 +10,13 @@ $forecaster = new \noaa\Forecaster($config);
 // set your own latitude and longitude here to test
 $lat = '42.16';
 $lng = '-72.72';
-$startTime = date('c', time());
+$startTime = date('Y-m-d', time());
 $numDays = 7;
 
 // fetch a Forecast object
 try {
 	$forecast = $forecaster->getForecastByLatLng($lat, $lng, $startTime, 7);
-} catch (Exception $e) {
+} catch (\Exception $e) {
 	echo "Error: " . $e->getMessage() . "\n";
 	exit(1);
 }
