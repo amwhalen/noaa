@@ -63,7 +63,7 @@ Here is some sample code for getting the 7-day forecast starting from the curren
         echo "There was an error fetching the forecast: " . $e->getMessage() . "\n";
     }
     // get ForecastDay object for the first day of the forecast
-    $day = $forecast[0];
+    $day = $forecast->getDay(0);
     echo "High Temperature: " . $day->getHighTemperature() . "\n";
 
 Depending on the time of day you make the request (local to the location you request), the first day included in the response may be "today" or "tomorrow".
