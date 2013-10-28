@@ -58,7 +58,7 @@ Here is some sample code for getting the 7-day forecast starting from the curren
     $numDays = 7;
     try {
         // returns a Forecast object or throws an exception on API error
-        $forecast = $forecaster->getForecastByLatLng($lat, $lng, $startTime, 7);
+        $forecast = $forecaster->getForecastByLatLng($lat, $lng, $startTime, $numDays);
     } catch (\Exception $e) {
         echo "There was an error fetching the forecast: " . $e->getMessage() . "\n";
     }
