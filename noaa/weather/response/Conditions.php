@@ -28,11 +28,17 @@ class Conditions extends Base {
 			$str .= ' (';
 			$vals = array();
 			foreach ($this->values as $v) {
-				// handle "none" for intensity, ex: "patchy none fog"
+				if ($v['intensity'] == "none") {
+					$v_intensityProcessed = "no";
+				}
+				else {
+					$v_intensityProcessed = $v['intensity'];
+				}
+				// handle "no" for intensity, ex: "patchy none fog"
 				if (isset($v['additive'])) {
-					$vals[] = sprintf('%s %s %s %s', $v['additive'], $v['coverage'], $v['intensity'], $v['weather-type']);
+					$vals[] = sprintf('%s %s %s %s', $v['additive'], $v['coverage'], $v_intensityProcessed, $v['weather-type']);
 				} else {
-					$vals[] = sprintf('%s %s %s', $v['coverage'], $v['intensity'], $v['weather-type']);
+					$vals[] = sprintf('%s %s %s', $v['coverage'], $v_intensityProcessed, $v['weather-type']);
 				}
 			}
 			$str .= implode(' ', $vals);
