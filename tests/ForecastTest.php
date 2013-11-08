@@ -14,6 +14,10 @@ class ForecastTest extends PHPUnit_Framework_TestCase {
 			$this->fail('An exception was thrown while attempting to instantiate a Forecast: ' . $e->getMessage());
 		}
 
+		// xml creation date
+		$date = $forecast->getCreationDate();
+		$this->assertEquals($date, '2008-12-05T19:38:31Z');
+
 		// high temps
 		$expectedHighs = array(38, 29, 33, 20, 37, 18, 14);
 		$this->assertEquals(

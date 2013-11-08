@@ -14,6 +14,10 @@ class ConditionsTest extends PHPUnit_Framework_TestCase {
             $this->fail('An exception was thrown while attempting to instantiate a Forecast: ' . $e->getMessage());
         }
 
+        // xml creation date
+        $date = $forecast->getCreationDate();
+        $this->assertEquals($date, '2012-09-30T00:00:00Z');
+
         // expected weather condition summaries
         $expectedConditionSummaries = array(
             'Chance Rain Showers',

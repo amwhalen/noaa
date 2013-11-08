@@ -22,6 +22,9 @@ try {
 }
 
 // display
+
+echo "Date of Forecast: " . $forecast->getCreationDate() . "\n";
+
 $hazards = $forecast->getHazards();
 if (count($hazards) > 0) {
 	echo "HAZARDS: " . implode(', ', $hazards) . "\n";

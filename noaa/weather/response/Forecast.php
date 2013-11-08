@@ -70,6 +70,17 @@ class Forecast extends Response {
 	}
 
 	/**
+	 * Returns the date and time this Forecast was created.
+	 * @return string The forecast as a date and time like "2013-11-08T15:01:34Z"
+	 */
+	public function getCreationDate() {
+
+		$nodes = $this->xml->xpath("/dwml/head[1]/product[1]/creation-date");
+		return (string) $nodes[0];
+
+	}
+
+	/**
 	 * Returns any Hazards (Watches, Warnings, and Advisories) for the forecast time period.
 	 *
 	 * SINGLE XML:
