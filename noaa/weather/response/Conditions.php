@@ -19,21 +19,40 @@ class Conditions extends Base {
 
 	/**
 	 * String representation
+	 * Returns a string like "Chance Rain Showers (chance light rain showers and patchy fog)"
 	 */
 	public function __toString() {
 		
+		// start with the summary, usually something like "Chance Rain Showers"
 		$str = $this->summary;
 
 		if (count($this->values) > 0) {
 			$str .= ' (';
 			$vals = array();
 			foreach ($this->values as $v) {
-				// handle "none" for intensity, ex: "patchy none fog"
+				
+				$words = array();
+
+				// does this day have multiple conditions? the additive will be set to something like "and"
 				if (isset($v['additive'])) {
-					$vals[] = sprintf('%s %s %s %s', $v['additive'], $v['coverage'], $v['intensity'], $v['weather-type']);
-				} else {
-					$vals[] = sprintf('%s %s %s', $v['coverage'], $v['intensity'], $v['weather-type']);
+					$words[] = $v['additive'];
 				}
+
+				// "chance", "patchy", etc.
+				$words[] = $v['coverage'];
+
+				// ignore "none" for intensity. We don't want to say "patchy none fog", but rather "patchy fog" instead.
+				// if set, this is something like "light", 
+				if (isset($v['intensity']) && $v['intensity'] !== 'none') {
+					$words[] = $v['intensity'];
+				}
+
+				// "rain showers", "fog", "snow", etc.
+				$words[] = $v['weather-type'];
+
+				// convert all the attributes into a string like "slight chance light rain showers"
+				$vals[] = implode(' ', $words);
+
 			}
 			$str .= implode(' ', $vals);
 			$str .= ')';
