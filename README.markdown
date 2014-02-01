@@ -66,6 +66,8 @@ Here is some sample code for getting the 7-day forecast starting from the curren
     $day = $forecast->getDay(0);
     echo "High Temperature: " . $day->getHighTemperature() . "\n";
 
+You can find more sample code in the example/forecast.php file.
+
 Nightly Forecasts
 -----------------
 
@@ -80,8 +82,6 @@ That probability can be retrieved like so:
     if ($forecast->doesStartAtNight()) {
         $tonightsPrecipitation = $forecast->getPrecipitationProbabilityTonight();
     }
-
-You can find more sample code in the example/forecast.php file.
 
 
 Caching
