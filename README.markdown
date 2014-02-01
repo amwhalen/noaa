@@ -66,7 +66,21 @@ Here is some sample code for getting the 7-day forecast starting from the curren
     $day = $forecast->getDay(0);
     echo "High Temperature: " . $day->getHighTemperature() . "\n";
 
-Depending on the time of day you make the request (local to the location you request), the first day included in the response may be "today" or "tomorrow".
+Nightly Forecasts
+-----------------
+
+For forecasts made at night (after 6pm local time), the first day in the forecast result will be for "tomorrow."
+The doesStartAtNight() method will tell you if a forecast is a "night time" forecast:
+
+    $forecast->doesStartAtNight();
+
+There will also be one item of information that's still of value for "today," and that is the precipitation probability from 6pm-6am.
+That probability can be retrieved like so:
+
+    if ($forecast->doesStartAtNight()) {
+        $tonightsPrecipitation = $forecast->getPrecipitationProbabilityTonight();
+    }
+
 You can find more sample code in the example/forecast.php file.
 
 

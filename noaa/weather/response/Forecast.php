@@ -10,6 +10,7 @@ class Forecast extends Response {
 
 	protected $length;
 	protected $days;
+	protected $precipitationProbabilityTonight;
 
 	/**
 	 * Constructor
@@ -174,6 +175,19 @@ class Forecast extends Response {
 		$nodes = $this->xml->xpath("/dwml/data[1]/parameters[1]/probability-of-precipitation[1]/value");
 		$probs = array();
 		if (count($nodes) > 0) {
+			// if this forecast starts at night time, it contains tonight's precip probability
+			// but no other piece of information about tonight's forecast, so remove the first item
+			// since it shouldn't go in a ForecastDay object
+			if ($this->doesStartAtNight()) {
+				// remove the first item in the array
+				$tonight = array_shift($nodes);
+				// add a null to the end
+				array_push($nodes, end($nodes));
+				// set tonight's precip
+				$this->precipitationProbabilityTonight = (int) $tonight[0];
+			} else {
+				$this->precipitationProbabilityTonight = null;
+			}
 			foreach ($nodes as $node) {
 				// test for the xsi:nil="true" attribute, which denotes that this node has no value
 				$nil = (boolean) $node->attributes('xsi', true)->nil;
@@ -185,6 +199,17 @@ class Forecast extends Response {
 			}
 		}
 		return $probs;
+	}
+
+	/**
+	 * Returns tonight's chance of precipitation
+	 */
+	public function getPrecipitationProbabilityTonight() {
+		if (!isset($this->precipitationProbabilityTonight)) {
+			// this call sets the variable
+			$this->getPrecipitationProbabilities();
+		}
+		return $this->precipitationProbabilityTonight;
 	}
 
 	/**
@@ -200,10 +225,34 @@ class Forecast extends Response {
 	}
 
 	/**
+	 * Returns the 12-hour end dates and times
+	 */
+	public function getEndTimes12Hour() {
+		$nodes = $this->xml->xpath("/dwml/data[1]/time-layout[@summarization='12hourly'][1]/end-valid-time");
+		$times = array();
+		foreach ($nodes as $node) {
+			$times[] = (string) $node[0];
+		}
+		return $times;
+	}
+
+	/**
 	 * Returns the start dates and times of each forecast day
 	 */
 	public function getStartTimes() {
 		$nodes = $this->xml->xpath("/dwml/data[1]/time-layout[@summarization='24hourly'][1]/start-valid-time");
+		$times = array();
+		foreach ($nodes as $node) {
+			$times[] = (string) $node[0];
+		}
+		return $times;
+	}
+
+	/**
+	 * Returns the 12-hour start dates and times
+	 */
+	public function getStartTimes12Hour() {
+		$nodes = $this->xml->xpath("/dwml/data[1]/time-layout[@summarization='12hourly'][1]/start-valid-time");
 		$times = array();
 		foreach ($nodes as $node) {
 			$times[] = (string) $node[0];
@@ -236,6 +285,19 @@ class Forecast extends Response {
 			$conditions[] = $condition;
 		}
 		return $conditions;
+	}
+
+	/**
+	 * Returns TRUE if this forecast starts at night (the end of a day) instead of in the morning.
+	 *
+	 * If a forecast starts at night, it will contain one item of information that's still relevant to "today",
+	 * which is the precipitation probability for "tonight", which spans from 6pm today to 6am tomorrow morning.
+	 */
+	public function doesStartAtNight() {
+		$startdate = $this->getStartTimes12Hour()[0];
+		preg_match('/.*T([0-9]{2}):.*/i', $startdate, $matches);
+		$starthour = $matches[1];
+		return ($starthour == '18');
 	}
 
 }

@@ -142,4 +142,31 @@ class ForecastTest extends PHPUnit_Framework_TestCase {
 
 	}
 
+	public function testNightForecasts() {
+
+		try {
+			// test a Forecast using NOAA's standard 7-day, 24-hour XML data
+			$filename = 'forecast_precip.xml';
+			$forecast = new \noaa\weather\response\Forecast(file_get_contents(dirname(__FILE__) . '/xml/' . $filename));
+		} catch (Exception $e) {
+			$this->fail('An exception was thrown while attempting to instantiate a Forecast: ' . $e->getMessage());
+		}
+
+		$day = $forecast->getDay(0);
+
+		// this forecast starts at night
+		$this->assertTrue($forecast->doesStartAtNight());
+		$this->assertEquals(4, $forecast->getPrecipitationProbabilityTonight());
+
+		// zero day should be 1/31 (not 2/1)
+		$this->assertEquals(13, $day->getPrecipitationProbabilityDay());
+		$this->assertEquals(28, $day->getPrecipitationProbabilityNight());
+
+		// last day should have day/night precip of null
+		$lastDay = $forecast->getDay(6);
+		$this->assertEquals(null, $lastDay->getPrecipitationProbabilityDay());
+		$this->assertEquals(null, $lastDay->getPrecipitationProbabilityNight());
+
+	}
+
 }
