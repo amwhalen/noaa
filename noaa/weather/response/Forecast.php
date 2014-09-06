@@ -77,7 +77,7 @@ class Forecast extends Response {
     public function getCreationDate() {
 
         $nodes = $this->xml->xpath("/dwml/head[1]/product[1]/creation-date");
-        return (string) $nodes[0];
+        return (string)$nodes[0];
 
     }
 
@@ -123,11 +123,11 @@ class Forecast extends Response {
         $temps = array();
         foreach ($nodes as $node) {
             // test for the xsi:nil="true" attribute, which denotes that this node has no value
-            $nil = (boolean) $node->attributes('xsi', true)->nil;
+            $nil = (boolean)$node->attributes('xsi', true)->nil;
             if ($nil) {
                 $temps[] = null;
             } else {
-                $temps[] = (int) $node[0];
+                $temps[] = (int)$node[0];
             }
         }
         return $temps;
@@ -144,11 +144,11 @@ class Forecast extends Response {
         if (count($nodes) > 0) {
             foreach ($nodes as $node) {
                 // test for the xsi:nil="true" attribute, which denotes that this node has no value
-                $nil = (boolean) $node->attributes('xsi', true)->nil;
+                $nil = (boolean)$node->attributes('xsi', true)->nil;
                 if ($nil) {
                     $temps[] = null;
                 } else {
-                    $temps[] = (int) $node[0];
+                    $temps[] = (int)$node[0];
                 }
             }
         }
@@ -163,7 +163,7 @@ class Forecast extends Response {
         $nodes = $this->xml->xpath("/dwml/data[1]/parameters[1]/conditions-icon[1]/icon-link");
         $icons = array();
         foreach ($nodes as $node) {
-            $icons[] = (string) $node[0];
+            $icons[] = (string)$node[0];
         }
         return $icons;
     }
@@ -184,17 +184,17 @@ class Forecast extends Response {
                 // add a null to the end
                 array_push($nodes, end($nodes));
                 // set tonight's precip
-                $this->precipitationProbabilityTonight = (int) $tonight[0];
+                $this->precipitationProbabilityTonight = (int)$tonight[0];
             } else {
                 $this->precipitationProbabilityTonight = null;
             }
             foreach ($nodes as $node) {
                 // test for the xsi:nil="true" attribute, which denotes that this node has no value
-                $nil = (boolean) $node->attributes('xsi', true)->nil;
+                $nil = (boolean)$node->attributes('xsi', true)->nil;
                 if ($nil) {
                     $probs[] = null;
                 } else {
-                    $probs[] = (int) $node[0];
+                    $probs[] = (int)$node[0];
                 }
             }
         }
@@ -219,7 +219,7 @@ class Forecast extends Response {
         $nodes = $this->xml->xpath("/dwml/data[1]/time-layout[@summarization='24hourly'][1]/end-valid-time");
         $times = array();
         foreach ($nodes as $node) {
-            $times[] = (string) $node[0];
+            $times[] = (string)$node[0];
         }
         return $times;
     }
@@ -231,7 +231,7 @@ class Forecast extends Response {
         $nodes = $this->xml->xpath("/dwml/data[1]/time-layout[@summarization='12hourly'][1]/end-valid-time");
         $times = array();
         foreach ($nodes as $node) {
-            $times[] = (string) $node[0];
+            $times[] = (string)$node[0];
         }
         return $times;
     }
@@ -243,7 +243,7 @@ class Forecast extends Response {
         $nodes = $this->xml->xpath("/dwml/data[1]/time-layout[@summarization='24hourly'][1]/start-valid-time");
         $times = array();
         foreach ($nodes as $node) {
-            $times[] = (string) $node[0];
+            $times[] = (string)$node[0];
         }
         return $times;
     }
@@ -255,7 +255,7 @@ class Forecast extends Response {
         $nodes = $this->xml->xpath("/dwml/data[1]/time-layout[@summarization='12hourly'][1]/start-valid-time");
         $times = array();
         foreach ($nodes as $node) {
-            $times[] = (string) $node[0];
+            $times[] = (string)$node[0];
         }
         return $times;
     }
@@ -267,17 +267,17 @@ class Forecast extends Response {
         $nodes = $this->xml->xpath("/dwml/data[1]/parameters[1]/weather[1]/weather-conditions");
         $conditions = array();
         foreach ($nodes as $node) {
-            $summary = (string) $node['weather-summary'];
+            $summary = (string)$node['weather-summary'];
             $values = array();
             foreach ($node->value as $value) {
                 $arr = array(
-                    'coverage' => (string) $value['coverage'],
-                    'intensity' => (string) $value['intensity'],
-                    'weather-type' => (string) $value['weather-type'],
-                    'qualifier' => (string) $value['qualifier']
+                    'coverage' => (string)$value['coverage'],
+                    'intensity' => (string)$value['intensity'],
+                    'weather-type' => (string)$value['weather-type'],
+                    'qualifier' => (string)$value['qualifier']
                 );
                 if (isset($value['additive'])) {
-                    $arr['additive'] = (string) $value['additive'][0];
+                    $arr['additive'] = (string)$value['additive'][0];
                 }
                 $values[] = $arr;
             }
