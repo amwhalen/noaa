@@ -294,7 +294,8 @@ class Forecast extends Response {
      * which is the precipitation probability for "tonight", which spans from 6pm today to 6am tomorrow morning.
      */
     public function doesStartAtNight() {
-        $startdate = $this->getStartTimes12Hour()[0];
+        $tmpStartdate = $this->getStartTimes12Hour();
+        $startdate = $tmpStartdate[0];
         preg_match('/.*T([0-9]{2}):.*/i', $startdate, $matches);
         $starthour = $matches[1];
         return ($starthour == '18');
