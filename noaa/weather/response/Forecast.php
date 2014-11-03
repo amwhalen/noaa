@@ -295,7 +295,7 @@ class Forecast extends Response {
      */
     public function doesStartAtNight() {
         $tmpStartdate = $this->getStartTimes12Hour();
-        $startdate = $tmpStartDate[0];
+        $startdate = $tmpStartdate[0];
         preg_match('/.*T([0-9]{2}):.*/i', $startdate, $matches);
         $starthour = $matches[1];
         return ($starthour == '18');
