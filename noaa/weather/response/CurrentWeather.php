@@ -172,7 +172,7 @@ class CurrentWeather extends Response {
         if (!isset($this->cachedValues[$key])) {
             $path = sprintf("/current_observation/%s[1]", $key);
             $node = $this->xml->xpath($path);
-            $val = (string)$node[0];
+            $val = isset($node[0])? (string)$node[0]: '';
             $this->cachedValues[$key] = $val;
         }
 
