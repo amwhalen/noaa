@@ -1,0 +1,20 @@
+{
+    "name": "amwhalen/noaa",
+    "description": "Client library for NOAA's forecast and current weather services",
+    "keywords": ["weather", "noaa"],
+    "homepage": "http://github.com/amwhalen/noaa",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andrew Whalen",
+            "email": "andy@amwhalen.com",
+            "homepage": "http://amwhalen.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "ext-curl": "*",
+        "ext-SimpleXML": "*"
+    }
+}

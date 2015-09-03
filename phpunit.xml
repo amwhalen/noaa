@@ -6,7 +6,7 @@
          verbose="true">
 
   <testsuites>
-    <testsuite name="entree">
+    <testsuite name="noaa">
       <directory suffix="Test.php">tests/</directory>
     </testsuite>
   </testsuites>
