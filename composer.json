@@ -19,5 +19,5 @@
     },
     "autoload": {
         "psr-4": {"noaa\\": "noaa/"}
-    },
+    }
 }
