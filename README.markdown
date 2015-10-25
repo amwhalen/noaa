@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/amwhalen/noaa.svg)](https://travis-ci.org/amwhalen/noaa)
+
 Overview
 ========
 
