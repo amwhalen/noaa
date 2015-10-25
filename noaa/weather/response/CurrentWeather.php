@@ -49,7 +49,7 @@ class CurrentWeather extends Response {
     }
 
     /**
-     * Returns the RFC882 time of the weather observation.
+     * Returns the RFC822 time of the weather observation.
      */
     public function getObservationTime() {
         return $this->value('observation_time_rfc822');

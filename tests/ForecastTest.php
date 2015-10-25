@@ -125,6 +125,10 @@ class ForecastTest extends PHPUnit_Framework_TestCase {
 		// length
 		$this->assertEquals(7, $forecast->getLength());
 
+		// index within bounds
+		$this->assertEquals(null, $forecast->getDay(-1));
+		$this->assertEquals(null, $forecast->getDay($forecast->getLength()+1));
+
 		// ForecastDay tests
 		for ($i = 0; $i < 7; $i++) {
 			$day = $forecast->getDay($i);

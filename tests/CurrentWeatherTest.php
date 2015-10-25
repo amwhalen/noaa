@@ -23,6 +23,8 @@ class CurrentWeatherTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(1007.2, $current->getPressureMb());
 		$this->assertEquals(29.74, $current->getPressureInHg());
 
+		$this->assertEquals("Sun, 30 Sep 2012 14:53:00 -0400", $current->getObservationTime());
+
 		$this->assertEquals(65, $current->getRelativeHumidity());
 
 		$this->assertEquals(10.0, $current->getVisibilityMiles());
