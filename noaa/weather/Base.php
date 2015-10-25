@@ -36,4 +36,12 @@ class Base {
 
     }
 
+    /**
+     * Returns the current software version number.
+     * @return string The version.
+     */
+    public function version() {
+        return '0.1.0';
+    }
+
 }

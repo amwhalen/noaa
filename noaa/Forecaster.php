@@ -50,7 +50,7 @@ class Forecaster extends Base {
     public function getCurrentWeather($stationId) {
 
         // get the XML data
-        $url = sprintf('http://www.weather.gov/xml/current_obs/%s.xml', $stationId);
+        $url = sprintf('http://w1.weather.gov/xml/current_obs/%s.xml', $stationId);
 
         // fetch the xml if possible
         try {
@@ -142,6 +142,9 @@ class Forecaster extends Base {
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10); // seconds
             curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+            // add a user-agent, NOAA now requires one:
+            // http://stackoverflow.com/questions/32641072/current-observation-feed-from-weather-gov-forbidden-403
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array('User-Agent: amwhalen-php-noaa-'.$this->version()));
             $xmlString = curl_exec($ch);
             $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
             curl_close($ch);
