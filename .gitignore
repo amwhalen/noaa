@@ -3,6 +3,7 @@ examples/cache/*
 build/coverage
 build/coverage/*
 build/logs
+build/cache
 build/api
 build/pdepend
 build/phpdox

@@ -48,7 +48,12 @@ class FileCache implements Cache {
      * @return boolean TRUE if the entry was successfully stored in the cache, FALSE otherwise.
      */
     function save($id, $data, $lifeTime = 0) {
-        return file_put_contents($this->getFilename($id), $data);
+        $retval = @file_put_contents($this->getFilename($id), $data);
+        if ($retval !== FALSE) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

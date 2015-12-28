@@ -4,7 +4,9 @@ namespace noaa\weather\response;
 
 use noaa\weather\response\Response,
     noaa\weather\response\ForecastDay,
-    noaa\weather\response\Conditions;
+    noaa\weather\response\Conditions,
+    noaa\weather\response\TimeLayout,
+    noaa\weather\response\Hazard;
 
 class Forecast extends Response {
 
@@ -103,13 +105,20 @@ class Forecast extends Response {
      */
     public function getHazards() {
 
-        $nodes = $this->xml->xpath("/dwml/data[1]/parameters[1]/hazards[1]/hazard-conditions[1]/hazard");
         $hazards = array();
-        if (count($nodes) > 0) {
-            foreach ($nodes as $node) {
-                $hazards[] = ucwords(sprintf("%s %s %s", $node["hazardType"], $node["phenomena"], $node["significance"]));
+
+        $allHazards = $this->xml->xpath("/dwml/data[1]/parameters[1]/hazards");
+        foreach ($allHazards as $hazardsNode) {
+            $nodes = $hazardsNode->xpath("hazard-conditions[1]/hazard");
+            if (count($nodes) > 0) {
+                foreach ($nodes as $node) {
+                    $tlk = (string) $hazardsNode["time-layout"];
+                    $h = new Hazard((string)$node["hazardCode"], (string)$node["phenomena"], (string)$node["significance"], (string)$node["hazardType"], $tlk);
+                    $hazards[] = $h;
+                }
             }
         }
+
         return $hazards;
 
     }
@@ -258,6 +267,67 @@ class Forecast extends Response {
             $times[] = (string)$node[0];
         }
         return $times;
+    }
+
+    /**
+     * Returns time layouts used for different forecast data points.
+     *
+     * <time-layout time-coordinate="local" summarization="24hourly">
+     * <layout-key>k-p24h-n7-1</layout-key>
+     * <start-valid-time>2012-10-01T06:00:00-04:00</start-valid-time>
+     * <end-valid-time>2012-10-02T06:00:00-04:00</end-valid-time>
+     * <start-valid-time>2012-10-02T06:00:00-04:00</start-valid-time>
+     * <end-valid-time>2012-10-03T06:00:00-04:00</end-valid-time>
+     * <start-valid-time>2012-10-03T06:00:00-04:00</start-valid-time>
+     * <end-valid-time>2012-10-04T06:00:00-04:00</end-valid-time>
+     * <start-valid-time>2012-10-04T06:00:00-04:00</start-valid-time>
+     * <end-valid-time>2012-10-05T06:00:00-04:00</end-valid-time>
+     * <start-valid-time>2012-10-05T06:00:00-04:00</start-valid-time>
+     * <end-valid-time>2012-10-06T06:00:00-04:00</end-valid-time>
+     * <start-valid-time>2012-10-06T06:00:00-04:00</start-valid-time>
+     * <end-valid-time>2012-10-07T06:00:00-04:00</end-valid-time>
+     * <start-valid-time>2012-10-07T06:00:00-04:00</start-valid-time>
+     * <end-valid-time>2012-10-08T06:00:00-04:00</end-valid-time>
+     * </time-layout>
+     *
+     * @return array An array of TimeLayout objects.
+     */
+    public function getTimeLayouts() {
+
+        $nodes = $this->xml->xpath("/dwml/data[1]/time-layout");
+        $layouts = array();
+        if (count($nodes) > 0) {
+            foreach ($nodes as $node) {
+                $key = (string)$node->{'layout-key'};
+                $startTimes = $node->{'start-valid-time'};
+                $endTimes = $node->{'end-valid-time'};
+                $validTimes = array();
+                $i = 0;
+                foreach ($startTimes as $st) {
+                    $validTimes[] = array((string)$st, (string)$endTimes[$i]);
+                    $i++;
+                }
+                $tl = new TimeLayout($key, (string)$node['time-coordinate'], (string)$node['summarization'], $validTimes);
+                $layouts[$key] = $tl;
+            }
+        }
+        return $layouts;
+
+    }
+
+    /**
+     * Get a TimeLayout object by key.
+     *
+     * @param  string $key The key, such as 'k-p24h-n7-1'.
+     * @return TimeLayout TimeLayout object.
+     */
+    public function getTimeLayoutByKey($key) {
+        $tls = $this->getTimeLayouts();
+        if (array_key_exists($key, $tls)) {
+            return $tls[$key];
+        } else {
+            return false;
+        }
     }
 
     /**

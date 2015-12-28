@@ -15,6 +15,8 @@ require_once 'weather/response/CurrentWeather.php';
 require_once 'weather/response/Forecast.php';
 require_once 'weather/response/ForecastDay.php';
 require_once 'weather/response/Conditions.php';
+require_once 'weather/response/TimeLayout.php';
+require_once 'weather/response/Hazard.php';
 require_once 'weather/cache/Cache.php';
 require_once 'weather/cache/ArrayCache.php';
 require_once 'weather/cache/FileCache.php';

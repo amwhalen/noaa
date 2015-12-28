@@ -33,10 +33,10 @@ class ForecastTest extends PHPUnit_Framework_TestCase {
 		);
 
 		// hazards
-		$expectedHazards = array("Long Duration Lake Wind Advisory");
+		$expectedHazardString = "Long Duration Lake Wind Advisory";
 		$this->assertEquals(
-			$expectedHazards,
-			$forecast->getHazards()
+			$expectedHazardString,
+			(string) $forecast->getHazards()[0]
 		);
 
 		// precipitation probabilities
