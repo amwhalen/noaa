@@ -18,6 +18,12 @@
     <log type="junit" target="build/logs/junit.xml" logIncompleteSkipped="false"/>
   </logging>
 
+  <filter>
+    <whitelist addUncoveredFilesFromWhitelist="true">
+      <directory suffix=".php">src</directory>
+    </whitelist>
+  </filter>
+
   <php>
     <includePath>noaa</includePath>
   </php>
