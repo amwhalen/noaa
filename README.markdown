@@ -24,19 +24,21 @@ You can search for your local station ID here: http://www.weather.gov/xml/curren
 There is also a list of stations in XML if you'd like to do something with the station data: http://www.weather.gov/xml/current_obs/index.xml.
 Here is some sample code for getting the current weather conditions:
 
-    require_once 'noaa/Forecaster.php';
-    $config = new \noaa\weather\Configuration();
-    $myWritableCacheDirectory = dirname(__FILE__) . '/cache';
-    $config->setCache(new \noaa\weather\cache\FileCache($myWritableCacheDirectory));
-    $forecaster = new \noaa\Forecaster($config);
-    $stationId = 'KBAF';
-    try {
-        // returns a CurrentWeather object or throws an exception on API error
-        $current = $forecaster->getCurrentWeather($stationId);
-    } catch (\Exception $e) {
-        echo "Error: " . $e->getMessage() . "\n";
-    }
-    echo "Temperature: " . $current->getTemperatureF() . " °F\n";
+```php
+require_once 'noaa/Forecaster.php';
+$config = new \noaa\weather\Configuration();
+$myWritableCacheDirectory = dirname(__FILE__) . '/cache';
+$config->setCache(new \noaa\weather\cache\FileCache($myWritableCacheDirectory));
+$forecaster = new \noaa\Forecaster($config);
+$stationId = 'KBAF';
+try {
+    // returns a CurrentWeather object or throws an exception on API error
+    $current = $forecaster->getCurrentWeather($stationId);
+} catch (\Exception $e) {
+    echo "Error: " . $e->getMessage() . "\n";
+}
+echo "Temperature: " . $current->getTemperatureF() . " °F\n";
+```
 
 You can find more sample code in the example/current.php file.
 
@@ -49,24 +51,26 @@ The data provided by the API is 24-hour summarized data from 6am-6pm (local time
 The precipitation probabilities provided are 12-hour summaries for day and night, running from 6am-6pm and 6pm-6am respectively.
 Here is some sample code for getting the 7-day forecast starting from the current time:
 
-    require_once 'noaa/Forecaster.php';
-    $config = new \noaa\weather\Configuration();
-    $myWritableCacheDirectory = dirname(__FILE__) . '/cache';
-    $config->setCache(new \noaa\weather\cache\FileCache($myWritableCacheDirectory));
-    $forecaster = new \noaa\Forecaster($config);
-    $lat = '42.16';
-    $lng = '-72.72';
-    $startTime = date('Y-m-d', time());
-    $numDays = 7;
-    try {
-        // returns a Forecast object or throws an exception on API error
-        $forecast = $forecaster->getForecastByLatLng($lat, $lng, $startTime, $numDays);
-    } catch (\Exception $e) {
-        echo "There was an error fetching the forecast: " . $e->getMessage() . "\n";
-    }
-    // get ForecastDay object for the first day of the forecast
-    $day = $forecast->getDay(0);
-    echo "High Temperature: " . $day->getHighTemperature() . "\n";
+```php
+require_once 'noaa/Forecaster.php';
+$config = new \noaa\weather\Configuration();
+$myWritableCacheDirectory = dirname(__FILE__) . '/cache';
+$config->setCache(new \noaa\weather\cache\FileCache($myWritableCacheDirectory));
+$forecaster = new \noaa\Forecaster($config);
+$lat = '42.16';
+$lng = '-72.72';
+$startTime = date('Y-m-d', time());
+$numDays = 7;
+try {
+    // returns a Forecast object or throws an exception on API error
+    $forecast = $forecaster->getForecastByLatLng($lat, $lng, $startTime, $numDays);
+} catch (\Exception $e) {
+    echo "There was an error fetching the forecast: " . $e->getMessage() . "\n";
+}
+// get ForecastDay object for the first day of the forecast
+$day = $forecast->getDay(0);
+echo "High Temperature: " . $day->getHighTemperature() . "\n";
+```
 
 You can find more sample code in the example/forecast.php file.
 
@@ -76,15 +80,18 @@ Nightly Forecasts
 For forecasts made at night (after 6pm local time), the first day in the forecast result will be for "tomorrow."
 The doesStartAtNight() method will tell you if a forecast is a "night time" forecast:
 
-    $forecast->doesStartAtNight();
+```php
+$forecast->doesStartAtNight();
+```
 
 There will also be one item of information that's still of value for "today," and that is the precipitation probability from 6pm-6am.
 That probability can be retrieved like so:
 
-    if ($forecast->doesStartAtNight()) {
-        $tonightsPrecipitation = $forecast->getPrecipitationProbabilityTonight();
-    }
-
+```php
+if ($forecast->doesStartAtNight()) {
+    $tonightsPrecipitation = $forecast->getPrecipitationProbabilityTonight();
+}
+```
 
 Caching
 ========
@@ -101,5 +108,7 @@ See the noaa/weather/cache/ArrayCache.php file for an example.
 
 To instantiate a Forecaster object without a caching mechanism (not recommended!):
 
-    require_once 'noaa/Forecaster.php';
-    $forecaster = new \noaa\Forecaster();
+```php
+require_once 'noaa/Forecaster.php';
+$forecaster = new \noaa\Forecaster();
+```
