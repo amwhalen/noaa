@@ -15,7 +15,7 @@ $numDays = 7;
 
 // fetch a Forecast object
 try {
-	$forecast = $forecaster->getForecastByLatLng($lat, $lng, $startTime, 7);
+	$forecast = $forecaster->getForecastByLatLng($lat, $lng, $startTime, $numDays);
 } catch (\Exception $e) {
 	echo "Error: " . $e->getMessage() . "\n";
 	exit(1);
